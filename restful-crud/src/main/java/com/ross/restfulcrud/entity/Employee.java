@@ -1,6 +1,7 @@
 package com.ross.restfulcrud.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Employee implements Serializable {
     private Integer id;
@@ -12,6 +13,26 @@ public class Employee implements Serializable {
     private Integer gender;
 
     private Integer dId;
+
+    private Department department;
+
+    private Date birth;
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public Date getBirth() {
+        return birth;
+    }
+
+    public void setBirth(Date birth) {
+        this.birth = birth;
+    }
 
     private static final long serialVersionUID = 1L;
 

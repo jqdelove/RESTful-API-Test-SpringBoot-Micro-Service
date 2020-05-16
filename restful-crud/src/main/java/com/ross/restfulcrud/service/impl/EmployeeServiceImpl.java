@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service("employeeService")
 @Transactional(propagation= Propagation.REQUIRED,rollbackFor=Exception.class)
 public class EmployeeServiceImpl implements EmployeeService {
@@ -23,5 +25,15 @@ public class EmployeeServiceImpl implements EmployeeService {
         }else {
             return null;
         }
+    }
+
+    @Override
+    public List<Employee> getAll() {
+        return employeeMapper.selectAll();
+    }
+
+    @Override
+    public int addEmp(Employee employee) {
+        return employeeMapper.insertSelective(employee);
     }
 }

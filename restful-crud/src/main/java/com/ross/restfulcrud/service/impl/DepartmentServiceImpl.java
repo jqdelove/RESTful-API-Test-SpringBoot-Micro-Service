@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service("departmentService")
 @Transactional(propagation= Propagation.REQUIRED,rollbackFor=Exception.class)
 public class DepartmentServiceImpl implements DepartmentService {
@@ -18,5 +20,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Department getDept(Integer id) {
         return departmentMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public List<Department> getAll() {
+        return departmentMapper.selectAll();
     }
 }

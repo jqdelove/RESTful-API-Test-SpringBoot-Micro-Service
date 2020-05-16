@@ -4,6 +4,7 @@ import com.ross.restfulcrud.entity.Employee;
 import com.ross.restfulcrud.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
@@ -28,5 +29,15 @@ public class LoginController {
             map.put("msg","用户名或密码错误");
             return "login";
         }
+    }
+
+    /**
+     * 退出登录
+     * @return
+     */
+    @GetMapping("/signout")
+    public String signout(HttpSession session){
+        session.invalidate();
+        return "/login";
     }
 }

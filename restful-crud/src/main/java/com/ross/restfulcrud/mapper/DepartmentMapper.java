@@ -24,6 +24,8 @@ public interface DepartmentMapper {
 
     Department selectByPrimaryKey(Integer id);
 
+    List<Department> selectAll();
+
     int updateByExampleSelective(@Param("record") Department record, @Param("example") DepartmentExample example);
 
     int updateByExample(@Param("record") Department record, @Param("example") DepartmentExample example);

@@ -26,6 +26,8 @@ public interface EmployeeMapper {
 
     Employee selectByNameAndPwd(@Param("lastname") String name,@Param("email") String password);
 
+    List<Employee> selectAll();
+
     int updateByExampleSelective(@Param("record") Employee record, @Param("example") EmployeeExample example);
 
     int updateByExample(@Param("record") Employee record, @Param("example") EmployeeExample example);

@@ -7,6 +7,7 @@
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="gender" property="gender" jdbcType="INTEGER" />
     <result column="d_id" property="dId" jdbcType="INTEGER" />
+    <result column="birth" property="birth"/>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, lastName, email, gender, d_id
+    id, lastName, email, gender, d_id, birth
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ross.restfulcrud.entity.EmployeeExample" >
     select
@@ -95,6 +96,12 @@
     <include refid="Base_Column_List" />
     from employee
     where lastName = #{lastname} and email = #{email}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from employee
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
