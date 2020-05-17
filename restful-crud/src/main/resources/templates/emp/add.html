@@ -8,7 +8,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 
-		<title>Dashboard Template for Bootstrap</title>
+		<title>[[${emp!=null}?'修改页面':'添加页面']]</title>
 		<!-- Bootstrap core CSS -->
 		<link href="../../static/asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.css}" rel="stylesheet">
 
@@ -51,42 +51,50 @@
 				<!-- 也可以用不加波浪线大括号的写法	-->
 				<!--	引入侧边栏	-->
 				<!--	引入片段时传activeUri参数，表示当前选中的是哪一个页面	-->
-				<div th:replace="commons/bar::left(activeUri='emps')"></div>
+				<div th:replace="commons/bar :: left(activeUri='emps')"></div>
 
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 					<form th:action="@{/emp}" method="post">
-						<input type="hidden" name="_method"/>
-						<input type="hidden" name="id">
+						<!--	发送PUT请求修改数据		-->
+						<!--	1、SpringMVC中配置HiddenHttpMethodFilter，启用PUT请求（SpringBoot已经配好）
+								2、页面创建post表单
+								3、创建input标签，name="_method"，值就是我们指定的请求方式				-->
+						<input type="hidden" name="_method" value="put" th:if="${emp!=null}">
+
+						<!--	员工id	-->
+						<input type="hidden" name="id" th:value="${emp.id}" th:if="${emp!=null}">
+
 						<div class="form-group">
 							<label>LastName</label>
-							<input name="lastname" type="text" class="form-control" placeholder="ross">
+																									<!--	需要判断是员工添加页面还是修改页面	-->
+							<input name="lastname" type="text" class="form-control" placeholder="ross" th:value="${emp!=null}?${emp.lastname}">
 						</div>
 						<div class="form-group">
 							<label>Email</label>
-							<input name="email" type="email" class="form-control" placeholder="ross@gmail.com">
+							<input name="email" type="email" class="form-control" placeholder="ross@gmail.com" th:value="${emp!=null}?${emp.email}">
 						</div>
 						<div class="form-group">
 							<label>Gender</label><br/>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="gender" value="1">
+								<input class="form-check-input" type="radio" name="gender" value="1" th:checked="${emp!=null}?${emp.gender==1}">
 								<label class="form-check-label">男</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="gender" value="0">
+								<input class="form-check-input" type="radio" name="gender" value="0" th:checked="${emp!=null}?${emp.gender==0}">
 								<label class="form-check-label">女</label>
 							</div>
 						</div>
 						<div class="form-group">
 							<label>department</label>
 							<select class="form-control" name="department.id">
-								<option th:value="${department.id}" th:each="department:${departments}">[[${department.departmentname}]]</option>
+								<option th:selected="${emp!=null}?${emp.dId==department.id}" th:value="${department.id}" th:each="department:${departments}">[[${department.departmentname}]]</option>
 							</select>
 						</div>
 						<div class="form-group">
 							<label>Birth</label>
-							<input name="birth" type="text" class="form-control" placeholder="yyyy-MM-dd">
+							<input name="birth" type="text" class="form-control" placeholder="yyyy/MM/dd" th:value="${emp!=null}?${#dates.format(emp.birth,'yyyy/MM/dd')}">
 						</div>
-						<button type="submit" class="btn btn-primary">添加</button>
+						<button type="submit" class="btn btn-primary" th:text="${emp!=null}?'修改':'添加'">添加</button>
 					</form>
 				</main>
 			</div>

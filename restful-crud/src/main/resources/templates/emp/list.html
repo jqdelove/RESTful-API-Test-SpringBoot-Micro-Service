@@ -8,7 +8,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 
-		<title>Dashboard Template for Bootstrap</title>
+		<title>员工列表</title>
 		<!-- Bootstrap core CSS -->
 		<link href="../../static/asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.css}" rel="stylesheet">
 
@@ -78,8 +78,8 @@
 									<td th:text="${emp.dId}"></td>
 									<td th:text="${#dates.format(emp.birth,'yyyy-MM-dd')}"></td>
 									<td>
-										<button class="btn btn-sm btn-primary">编辑</button>
-										<button class="btn btn-sm btn-danger">删除</button>
+										<a class="btn btn-sm btn-primary" th:href="@{/emp/}+${emp.id}">编辑</a>
+										<button th:attr="delete_uri=@{/emp/}+${emp.id}" class="btn btn-sm btn-danger deleteBtn">删除</button>
 									</td>
 								</tr>
 							</tbody>
@@ -87,6 +87,12 @@
 						</table>
 					</div>
 				</main>
+
+				<!--	将表单放在button外部，减少表单数量	-->
+				<form id="deleteEmpForm" method="post">
+					<input name="_method" type="hidden" value="delete">
+				</form>
+
 			</div>
 		</div>
 
@@ -101,6 +107,15 @@
 		<script type="text/javascript" src="../../static/asserts/js/feather.min.js" th:src="@{/asserts/js/feather.min.js}"></script>
 		<script>
 			feather.replace()
+		</script>
+
+		<!--	button按钮的绑定事件	-->
+		<script>
+			$(".deleteBtn").click(function () {
+				//动态设置form表单的action属性
+				$("#deleteEmpForm").attr("action",$(this).attr("delete_uri")).submit();
+				return false;//取消按钮的默认事件
+			});
 		</script>
 
 		<!-- Graphs -->
@@ -134,6 +149,7 @@
 				}
 			});
 		</script>
+
 
 	</body>
 
