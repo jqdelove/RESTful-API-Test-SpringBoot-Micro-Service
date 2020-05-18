@@ -14,14 +14,15 @@ public class CustomExceptionHandler {
 
     //1、浏览器和其他客户端返回的都是json数据
     //处理指定的异常
-/*    @ExceptionHandler(UserNotExistException.class)
+    /*
+    @ExceptionHandler(UserNotExistException.class)
     public @ResponseBody Map<String, String> handleException(Exception e){
         Map<String, String> map = new HashMap<>();
         map.put("code","user.notExist");
         map.put("message",e.getMessage());
         return map;
     }
-*/
+    */
 
     //2、根据是浏览器还是客户端自适应返回错误处理结果
     @ExceptionHandler(UserNotExistException.class)
@@ -33,6 +34,8 @@ public class CustomExceptionHandler {
 
         map.put("code","user.notExist");
         map.put("message",e.getMessage());
+        //将错误消息放入request中
+        request.setAttribute("ext",map);
         return "forward:/error";
     }
 

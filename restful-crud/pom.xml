@@ -35,7 +35,7 @@
             </exclusions>
         </dependency>
 
-        <!-- 引入web模块 -->
+        <!-- 引入web模块，默认就是用嵌入式的tomcat作为servlet容器 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
