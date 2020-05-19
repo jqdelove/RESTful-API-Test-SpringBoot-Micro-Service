@@ -31,7 +31,7 @@ class RestfulCrudApplicationTests {
 //        connection.close();
 
         //测试mybatis
-        System.out.println(departmentMapper.selectByPrimaryKey(1).getDepartmentname());
+//        System.out.println(departmentMapper.selectByPrimaryKey(1).getDepartmentname());
     }
 
 }

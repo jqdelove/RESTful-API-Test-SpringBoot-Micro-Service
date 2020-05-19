@@ -4,6 +4,7 @@ import com.ross.restfulcrud.entity.Employee;
 import com.ross.restfulcrud.mapper.EmployeeMapper;
 import com.ross.restfulcrud.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +28,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
     }
 
+    //常用的查询进行缓存
+    @Cacheable(cacheNames = "emps")
     @Override
     public List<Employee> getAll() {
         return employeeMapper.selectAll();
