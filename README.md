@@ -1,5 +1,5 @@
 # RESTful-API-Test-SpringBoot-Micro-Service
-SpringBoot集成中间件测试
+SpringBoot集成缓存中间件测试
 
 ## RESTful接口
 | 请求类型 | 请求方式 |
