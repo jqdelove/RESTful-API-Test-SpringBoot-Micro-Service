@@ -1,0 +1,9 @@
+{
+  "id": 1,
+  "lastname": "ross",
+  "email": "123@gmail.com",
+  "gender": 1,
+  "dId": 1,
+  "department": null,
+  "birth": "2020-05-16T00:00:00.000+0000"
+}

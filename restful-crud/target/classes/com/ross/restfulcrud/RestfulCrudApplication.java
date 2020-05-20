@@ -8,7 +8,7 @@ import org.springframework.cache.annotation.EnableCaching;
 @SpringBootApplication
 //扫描所有的mapper接口
 @MapperScan("com.ross.restfulcrud.mapper")
-@EnableCaching
+@EnableCaching//启用缓存
 public class RestfulCrudApplication {
 
     public static void main(String[] args) {

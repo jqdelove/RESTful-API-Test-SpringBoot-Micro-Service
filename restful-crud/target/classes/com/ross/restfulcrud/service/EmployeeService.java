@@ -14,7 +14,7 @@ public interface EmployeeService {
 
     Employee getEmp(Integer id);
 
-    int modify(Employee employee);
+    Employee modify(Employee employee);
 
     int remove(Integer id);
 }

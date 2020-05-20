@@ -4,6 +4,7 @@ import com.ross.restfulcrud.entity.Department;
 import com.ross.restfulcrud.mapper.DepartmentMapper;
 import com.ross.restfulcrud.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;

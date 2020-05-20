@@ -1,0 +1,12 @@
+{
+  "timestamp": "2020-05-18T10:12:10.312+0000",
+  "status": 500,
+  "error": "Internal Server Error",
+  "message": "java.lang.String cannot be cast to java.lang.Integer",
+  "path": "/crud/exception",
+  "company": "ross",
+  "ext": {
+    "code": "user.notExist",
+    "message": "用户不存在"
+  }
+}

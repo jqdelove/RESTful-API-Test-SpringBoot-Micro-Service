@@ -4,6 +4,8 @@ import com.ross.restfulcrud.entity.Employee;
 import com.ross.restfulcrud.mapper.EmployeeMapper;
 import com.ross.restfulcrud.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -40,16 +42,21 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeMapper.insertSelective(employee);
     }
 
+    @Cacheable(cacheNames = "emp",key = "#id")
     @Override
     public Employee getEmp(Integer id) {
         return employeeMapper.selectByPrimaryKey(id);
     }
 
+    //更新缓存，key要和上面查询的key相同
+    @CachePut(cacheNames = "emp",key = "#result.id")
     @Override
-    public int modify(Employee employee) {
-        return employeeMapper.updateByPrimaryKeySelective(employee);
+    public Employee modify(Employee employee) {
+        employeeMapper.updateByPrimaryKeySelective(employee);
+        return employee;
     }
 
+    @CacheEvict(cacheNames = "emp",key = "#id")
     @Override
     public int remove(Integer id) {
         return employeeMapper.deleteByPrimaryKey(id);
