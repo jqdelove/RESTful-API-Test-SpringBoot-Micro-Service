@@ -1,11 +1,9 @@
 # RESTful-API-Test-SpringBoot-Micro-Service
-<<<<<<< HEAD
-SpringBoot集成中间件测试
+SpringBoot集成缓存中间件Redis测试（测试内容包括缓存更新，缓存清除，将POJO进行json序列化缓存）
+地址：129.204.207.233:8083/crud
 测试账户：rossontheway
 测试密码：123@gmail.com
-=======
-SpringBoot集成缓存中间件测试
->>>>>>> 440e6cc7b90f5b6ce375fa42d2ab244d682eaa87
+
 
 ## RESTful接口
 | 请求类型 | 请求方式 |
